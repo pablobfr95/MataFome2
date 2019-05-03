@@ -225,7 +225,6 @@ namespace MataFome2
         {
             desabilitarcampos();
             desabilitabotoes();
-            
         }
 
         private void desabilitabotoes()
