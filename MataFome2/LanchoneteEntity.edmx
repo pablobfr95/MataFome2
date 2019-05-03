@@ -1,0 +1,997 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="LanchoneteEntity.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Balancos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QuantidadeAntiga" Type="int" Nullable="false" />
+          <Property Name="QuantidadeNova" Type="int" Nullable="false" />
+          <Property Name="Data" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Hora" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="UsuarioId" Type="int" Nullable="false" />
+          <Property Name="EstoqueId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Clientes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NomeCliente" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CPF" Type="nvarchar(max)" />
+          <Property Name="Telefone" Type="int" Nullable="false" />
+          <Property Name="Endereco" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Numero" Type="int" />
+          <Property Name="Bairro" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Municipio" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CEP" Type="nvarchar(max)" />
+          <Property Name="Observacao" Type="nvarchar(max)" />
+          <Property Name="TaxaEntrega" Type="float" Nullable="false" />
+          <Property Name="PontosFidelidade" Type="int" Nullable="false" />
+          <Property Name="ContadorVendas" Type="int" />
+          <Property Name="Complemento" Type="nvarchar(max)" />
+          <Property Name="TotalGasto" Type="float" />
+        </EntityType>
+        <EntityType Name="Estoques">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Quantidade" Type="int" Nullable="false" />
+          <Property Name="Medida" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FidelidadeClienteSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClienteId" Type="int" Nullable="false" />
+          <Property Name="Quantidade" Type="int" Nullable="false" />
+          <Property Name="ProdutosFidelidadeId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FormaPagamentos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descricao" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Motoqueiros">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Telefone" Type="int" Nullable="false" />
+          <Property Name="ValorTotalRecebido" Type="float" Nullable="false" />
+          <Property Name="ValorEntrega" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OperadorCaixas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Venda" Type="float" Nullable="false" />
+          <Property Name="DataCaixa" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="UsuarioId" Type="int" Nullable="false" />
+          <Property Name="Devolucao" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PagamentoVenda">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descricao" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="VendaId" Type="int" Nullable="false" />
+          <Property Name="FormaPagamentoId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Produtos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NomeProduto" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PrecoUnitario" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProdutosFidelidades">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DescricaoProduto" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="QtdePontos" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProdutoVendas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Quantidade" Type="int" Nullable="false" />
+          <Property Name="PrecoVenda" Type="float" Nullable="false" />
+          <Property Name="VendaId" Type="int" Nullable="false" />
+          <Property Name="ProdutoId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Saidas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descricao" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Valor" Type="float" Nullable="false" />
+          <Property Name="Datasaida" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Table_1">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Descricao" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Senha" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="NivelAcesso" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Venda">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Total" Type="float" Nullable="false" />
+          <Property Name="DataVenda" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Situacao" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ClienteId" Type="int" Nullable="false" />
+          <Property Name="FormaPagamentoId" Type="int" />
+          <Property Name="ObservacaoVenda" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Status" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="OperadorCaixaId" Type="int" Nullable="false" />
+          <Property Name="DataComparadora" Type="datetime" Nullable="false" />
+          <Property Name="TaxaEntregaVenda" Type="float" Nullable="false" />
+          <Property Name="MotoqueiroId" Type="int" />
+        </EntityType>
+        <Association Name="FK_ClienteFidelidadeCliente">
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
+          <End Role="FidelidadeClienteSet" Type="Self.FidelidadeClienteSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FidelidadeClienteSet">
+              <PropertyRef Name="ClienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClienteVenda">
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
+          <End Role="Venda" Type="Self.Venda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Venda">
+              <PropertyRef Name="ClienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EstoqueBalanco">
+          <End Role="Estoques" Type="Self.Estoques" Multiplicity="1" />
+          <End Role="Balancos" Type="Self.Balancos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estoques">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Balancos">
+              <PropertyRef Name="EstoqueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MotoqueiroVenda">
+          <End Role="Motoqueiros" Type="Self.Motoqueiros" Multiplicity="0..1" />
+          <End Role="Venda" Type="Self.Venda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Motoqueiros">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Venda">
+              <PropertyRef Name="MotoqueiroId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OperadorCaixaVenda">
+          <End Role="OperadorCaixas" Type="Self.OperadorCaixas" Multiplicity="1" />
+          <End Role="Venda" Type="Self.Venda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OperadorCaixas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Venda">
+              <PropertyRef Name="OperadorCaixaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PagamentoVenda_FormaPagamentos">
+          <End Role="FormaPagamentos" Type="Self.FormaPagamentos" Multiplicity="1" />
+          <End Role="PagamentoVenda" Type="Self.PagamentoVenda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormaPagamentos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PagamentoVenda">
+              <PropertyRef Name="FormaPagamentoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PagamentoVenda_Venda">
+          <End Role="Venda" Type="Self.Venda" Multiplicity="1" />
+          <End Role="PagamentoVenda" Type="Self.PagamentoVenda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Venda">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PagamentoVenda">
+              <PropertyRef Name="VendaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProdutoProdutoVenda">
+          <End Role="Produtos" Type="Self.Produtos" Multiplicity="1" />
+          <End Role="ProdutoVendas" Type="Self.ProdutoVendas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produtos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProdutoVendas">
+              <PropertyRef Name="ProdutoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProdutosFidelidadeFidelidadeCliente">
+          <End Role="ProdutosFidelidades" Type="Self.ProdutosFidelidades" Multiplicity="1" />
+          <End Role="FidelidadeClienteSet" Type="Self.FidelidadeClienteSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProdutosFidelidades">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FidelidadeClienteSet">
+              <PropertyRef Name="ProdutosFidelidadeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_1_Venda">
+          <End Role="Venda" Type="Self.Venda" Multiplicity="1" />
+          <End Role="Table_1" Type="Self.Table_1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Venda">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Table_1">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioBalanco">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Balancos" Type="Self.Balancos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Balancos">
+              <PropertyRef Name="UsuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioOperadorCaixa">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="OperadorCaixas" Type="Self.OperadorCaixas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OperadorCaixas">
+              <PropertyRef Name="UsuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VendaProdutoVenda">
+          <End Role="Venda" Type="Self.Venda" Multiplicity="1" />
+          <End Role="ProdutoVendas" Type="Self.ProdutoVendas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Venda">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProdutoVendas">
+              <PropertyRef Name="VendaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LanchoneteEntityStoreContainer">
+          <EntitySet Name="Balancos" EntityType="Self.Balancos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Estoques" EntityType="Self.Estoques" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FidelidadeClienteSet" EntityType="Self.FidelidadeClienteSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FormaPagamentos" EntityType="Self.FormaPagamentos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Motoqueiros" EntityType="Self.Motoqueiros" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OperadorCaixas" EntityType="Self.OperadorCaixas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PagamentoVenda" EntityType="Self.PagamentoVenda" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Produtos" EntityType="Self.Produtos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProdutosFidelidades" EntityType="Self.ProdutosFidelidades" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProdutoVendas" EntityType="Self.ProdutoVendas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Saidas" EntityType="Self.Saidas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_1" EntityType="Self.Table_1" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Venda" EntityType="Self.Venda" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ClienteFidelidadeCliente" Association="Self.FK_ClienteFidelidadeCliente">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="FidelidadeClienteSet" EntitySet="FidelidadeClienteSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClienteVenda" Association="Self.FK_ClienteVenda">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Venda" EntitySet="Venda" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EstoqueBalanco" Association="Self.FK_EstoqueBalanco">
+            <End Role="Estoques" EntitySet="Estoques" />
+            <End Role="Balancos" EntitySet="Balancos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MotoqueiroVenda" Association="Self.FK_MotoqueiroVenda">
+            <End Role="Motoqueiros" EntitySet="Motoqueiros" />
+            <End Role="Venda" EntitySet="Venda" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OperadorCaixaVenda" Association="Self.FK_OperadorCaixaVenda">
+            <End Role="OperadorCaixas" EntitySet="OperadorCaixas" />
+            <End Role="Venda" EntitySet="Venda" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PagamentoVenda_FormaPagamentos" Association="Self.FK_PagamentoVenda_FormaPagamentos">
+            <End Role="FormaPagamentos" EntitySet="FormaPagamentos" />
+            <End Role="PagamentoVenda" EntitySet="PagamentoVenda" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PagamentoVenda_Venda" Association="Self.FK_PagamentoVenda_Venda">
+            <End Role="Venda" EntitySet="Venda" />
+            <End Role="PagamentoVenda" EntitySet="PagamentoVenda" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProdutoProdutoVenda" Association="Self.FK_ProdutoProdutoVenda">
+            <End Role="Produtos" EntitySet="Produtos" />
+            <End Role="ProdutoVendas" EntitySet="ProdutoVendas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProdutosFidelidadeFidelidadeCliente" Association="Self.FK_ProdutosFidelidadeFidelidadeCliente">
+            <End Role="ProdutosFidelidades" EntitySet="ProdutosFidelidades" />
+            <End Role="FidelidadeClienteSet" EntitySet="FidelidadeClienteSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_1_Venda" Association="Self.FK_Table_1_Venda">
+            <End Role="Venda" EntitySet="Venda" />
+            <End Role="Table_1" EntitySet="Table_1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioBalanco" Association="Self.FK_UsuarioBalanco">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Balancos" EntitySet="Balancos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioOperadorCaixa" Association="Self.FK_UsuarioOperadorCaixa">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="OperadorCaixas" EntitySet="OperadorCaixas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VendaProdutoVenda" Association="Self.FK_VendaProdutoVenda">
+            <End Role="Venda" EntitySet="Venda" />
+            <End Role="ProdutoVendas" EntitySet="ProdutoVendas" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="LanchoneteEntity" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="LanchoneteEntityContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Usuarios" EntityType="LanchoneteEntity.Usuario" />
+          <EntitySet Name="Venda" EntityType="LanchoneteEntity.Venda" />
+          <EntitySet Name="Produtos" EntityType="LanchoneteEntity.Produto" />
+          <EntitySet Name="ProdutoVendas" EntityType="LanchoneteEntity.ProdutoVenda" />
+          <EntitySet Name="FormaPagamentos" EntityType="LanchoneteEntity.FormaPagamento" />
+          <EntitySet Name="Clientes" EntityType="LanchoneteEntity.Cliente" />
+          <EntitySet Name="OperadorCaixas" EntityType="LanchoneteEntity.OperadorCaixa" />
+          <AssociationSet Name="ProdutoProdutoVenda" Association="LanchoneteEntity.ProdutoProdutoVenda">
+            <End Role="Produto" EntitySet="Produtos" />
+            <End Role="ProdutoVenda" EntitySet="ProdutoVendas" />
+          </AssociationSet>
+          <AssociationSet Name="VendaProdutoVenda" Association="LanchoneteEntity.VendaProdutoVenda">
+            <End Role="Venda" EntitySet="Venda" />
+            <End Role="ProdutoVenda" EntitySet="ProdutoVendas" />
+          </AssociationSet>
+          <AssociationSet Name="ClienteVenda" Association="LanchoneteEntity.ClienteVenda">
+            <End Role="Cliente" EntitySet="Clientes" />
+            <End Role="Venda" EntitySet="Venda" />
+          </AssociationSet>
+          <AssociationSet Name="OperadorCaixaVenda" Association="LanchoneteEntity.OperadorCaixaVenda">
+            <End Role="OperadorCaixa" EntitySet="OperadorCaixas" />
+            <End Role="Venda" EntitySet="Venda" />
+          </AssociationSet>
+          <AssociationSet Name="UsuarioOperadorCaixa" Association="LanchoneteEntity.UsuarioOperadorCaixa">
+            <End Role="Usuario" EntitySet="Usuarios" />
+            <End Role="OperadorCaixa" EntitySet="OperadorCaixas" />
+          </AssociationSet>
+          <EntitySet Name="Estoques" EntityType="LanchoneteEntity.Estoque" />
+          <EntitySet Name="Balancos" EntityType="LanchoneteEntity.Balanco" />
+          <AssociationSet Name="UsuarioBalanco" Association="LanchoneteEntity.UsuarioBalanco">
+            <End Role="Usuario" EntitySet="Usuarios" />
+            <End Role="Balanco" EntitySet="Balancos" />
+          </AssociationSet>
+          <AssociationSet Name="EstoqueBalanco" Association="LanchoneteEntity.EstoqueBalanco">
+            <End Role="Estoque" EntitySet="Estoques" />
+            <End Role="Balanco" EntitySet="Balancos" />
+          </AssociationSet>
+          <EntitySet Name="ProdutosFidelidades" EntityType="LanchoneteEntity.ProdutosFidelidade" />
+          <EntitySet Name="FidelidadeClienteSet" EntityType="LanchoneteEntity.FidelidadeCliente" />
+          <AssociationSet Name="ClienteFidelidadeCliente" Association="LanchoneteEntity.ClienteFidelidadeCliente">
+            <End Role="Cliente" EntitySet="Clientes" />
+            <End Role="FidelidadeCliente" EntitySet="FidelidadeClienteSet" />
+          </AssociationSet>
+          <AssociationSet Name="ProdutosFidelidadeFidelidadeCliente" Association="LanchoneteEntity.ProdutosFidelidadeFidelidadeCliente">
+            <End Role="ProdutosFidelidade" EntitySet="ProdutosFidelidades" />
+            <End Role="FidelidadeCliente" EntitySet="FidelidadeClienteSet" />
+          </AssociationSet>
+          <EntitySet Name="PagamentoVenda" EntityType="LanchoneteEntity.PagamentoVenda" />
+          <AssociationSet Name="FK_PagamentoVenda_FormaPagamentos" Association="LanchoneteEntity.FK_PagamentoVenda_FormaPagamentos">
+            <End Role="FormaPagamento" EntitySet="FormaPagamentos" />
+            <End Role="PagamentoVenda" EntitySet="PagamentoVenda" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PagamentoVenda_Venda" Association="LanchoneteEntity.FK_PagamentoVenda_Venda">
+            <End Role="Venda" EntitySet="Venda" />
+            <End Role="PagamentoVenda" EntitySet="PagamentoVenda" />
+          </AssociationSet>
+          <EntitySet Name="Motoqueiros" EntityType="LanchoneteEntity.Motoqueiros" />
+          <EntitySet Name="Saidas" EntityType="LanchoneteEntity.Saidas" />
+          <EntitySet Name="Table_1" EntityType="LanchoneteEntity.Table_1" />
+          <AssociationSet Name="FK_MotoqueiroVenda" Association="LanchoneteEntity.FK_MotoqueiroVenda">
+            <End Role="Motoqueiros" EntitySet="Motoqueiros" />
+            <End Role="Venda" EntitySet="Venda" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_1_Venda" Association="LanchoneteEntity.FK_Table_1_Venda">
+            <End Role="Venda" EntitySet="Venda" />
+            <End Role="Table_1" EntitySet="Table_1" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Senha" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="NivelAcesso" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="OperadorCaixa" Relationship="LanchoneteEntity.UsuarioOperadorCaixa" FromRole="Usuario" ToRole="OperadorCaixa" />
+          <NavigationProperty Name="Balanco" Relationship="LanchoneteEntity.UsuarioBalanco" FromRole="Usuario" ToRole="Balanco" />
+        </EntityType>
+        <EntityType Name="Venda">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Total" Type="Double" Nullable="false" />
+          <Property Name="DataVenda" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Situacao" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ClienteId" Type="Int32" Nullable="false" />
+          <Property Name="FormaPagamentoId" Type="Int32" />
+          <Property Name="ObservacaoVenda" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="OperadorCaixaId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ProdutoVenda" Relationship="LanchoneteEntity.VendaProdutoVenda" FromRole="Venda" ToRole="ProdutoVenda" />
+          <NavigationProperty Name="Cliente" Relationship="LanchoneteEntity.ClienteVenda" FromRole="Venda" ToRole="Cliente" />
+          <NavigationProperty Name="OperadorCaixa" Relationship="LanchoneteEntity.OperadorCaixaVenda" FromRole="Venda" ToRole="OperadorCaixa" />
+          <Property Name="DataComparadora" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TaxaEntregaVenda" Type="Double" Nullable="false" />
+          <NavigationProperty Name="PagamentoVenda" Relationship="LanchoneteEntity.FK_PagamentoVenda_Venda" FromRole="Venda" ToRole="PagamentoVenda" />
+          <Property Name="MotoqueiroId" Type="Int32" />
+          <NavigationProperty Name="Motoqueiros" Relationship="LanchoneteEntity.FK_MotoqueiroVenda" FromRole="Venda" ToRole="Motoqueiros" />
+          <NavigationProperty Name="Table_1" Relationship="LanchoneteEntity.FK_Table_1_Venda" FromRole="Venda" ToRole="Table_1" />
+        </EntityType>
+        <EntityType Name="Produto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NomeProduto" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="PrecoUnitario" Type="Double" Nullable="false" />
+          <NavigationProperty Name="ProdutoVenda" Relationship="LanchoneteEntity.ProdutoProdutoVenda" FromRole="Produto" ToRole="ProdutoVenda" />
+        </EntityType>
+        <EntityType Name="ProdutoVenda">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Quantidade" Type="Int32" Nullable="false" />
+          <Property Name="PrecoVenda" Type="Double" Nullable="false" />
+          <Property Name="VendaId" Type="Int32" Nullable="false" />
+          <Property Name="ProdutoId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Produto" Relationship="LanchoneteEntity.ProdutoProdutoVenda" FromRole="ProdutoVenda" ToRole="Produto" />
+          <NavigationProperty Name="Venda" Relationship="LanchoneteEntity.VendaProdutoVenda" FromRole="ProdutoVenda" ToRole="Venda" />
+        </EntityType>
+        <EntityType Name="FormaPagamento">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descricao" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="PagamentoVenda" Relationship="LanchoneteEntity.FK_PagamentoVenda_FormaPagamentos" FromRole="FormaPagamento" ToRole="PagamentoVenda" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NomeCliente" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="CPF" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Telefone" Type="Int32" Nullable="false" />
+          <Property Name="Endereco" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Numero" Type="Int32" Nullable="true" />
+          <Property Name="Bairro" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Municipio" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="CEP" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Observacao" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Venda" Relationship="LanchoneteEntity.ClienteVenda" FromRole="Cliente" ToRole="Venda" />
+          <Property Name="TaxaEntrega" Type="Double" Nullable="false" />
+          <Property Name="PontosFidelidade" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="FidelidadeCliente" Relationship="LanchoneteEntity.ClienteFidelidadeCliente" FromRole="Cliente" ToRole="FidelidadeCliente" />
+          <Property Name="ContadorVendas" Type="Int32" />
+          <Property Name="Complemento" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TotalGasto" Type="Double" />
+        </EntityType>
+        <EntityType Name="OperadorCaixa">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Venda" Type="Double" Nullable="false" />
+          <Property Name="DataCaixa" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Venda1" Relationship="LanchoneteEntity.OperadorCaixaVenda" FromRole="OperadorCaixa" ToRole="Venda" />
+          <NavigationProperty Name="Usuario" Relationship="LanchoneteEntity.UsuarioOperadorCaixa" FromRole="OperadorCaixa" ToRole="Usuario" />
+          <Property Name="UsuarioId" Type="Int32" Nullable="false" />
+          <Property Name="Devolucao" Type="Double" Nullable="false" />
+        </EntityType>
+        <Association Name="ProdutoProdutoVenda">
+          <End Type="LanchoneteEntity.Produto" Role="Produto" Multiplicity="1" />
+          <End Type="LanchoneteEntity.ProdutoVenda" Role="ProdutoVenda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProdutoVenda">
+              <PropertyRef Name="ProdutoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="VendaProdutoVenda">
+          <End Type="LanchoneteEntity.Venda" Role="Venda" Multiplicity="1" />
+          <End Type="LanchoneteEntity.ProdutoVenda" Role="ProdutoVenda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Venda">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProdutoVenda">
+              <PropertyRef Name="VendaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ClienteVenda">
+          <End Type="LanchoneteEntity.Cliente" Role="Cliente" Multiplicity="1" />
+          <End Type="LanchoneteEntity.Venda" Role="Venda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Venda">
+              <PropertyRef Name="ClienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OperadorCaixaVenda">
+          <End Type="LanchoneteEntity.OperadorCaixa" Role="OperadorCaixa" Multiplicity="1" />
+          <End Type="LanchoneteEntity.Venda" Role="Venda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OperadorCaixa">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Venda">
+              <PropertyRef Name="OperadorCaixaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UsuarioOperadorCaixa">
+          <End Type="LanchoneteEntity.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="LanchoneteEntity.OperadorCaixa" Role="OperadorCaixa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OperadorCaixa">
+              <PropertyRef Name="UsuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Estoque">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Quantidade" Type="Int32" Nullable="false" />
+          <Property Name="Medida" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Balanco" Relationship="LanchoneteEntity.EstoqueBalanco" FromRole="Estoque" ToRole="Balanco" />
+        </EntityType>
+        <EntityType Name="Balanco">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QuantidadeAntiga" Type="Int32" Nullable="false" />
+          <Property Name="QuantidadeNova" Type="Int32" Nullable="false" />
+          <Property Name="Data" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Hora" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Usuario" Relationship="LanchoneteEntity.UsuarioBalanco" FromRole="Balanco" ToRole="Usuario" />
+          <Property Name="UsuarioId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Estoque" Relationship="LanchoneteEntity.EstoqueBalanco" FromRole="Balanco" ToRole="Estoque" />
+          <Property Name="EstoqueId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="UsuarioBalanco">
+          <End Type="LanchoneteEntity.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="LanchoneteEntity.Balanco" Role="Balanco" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Balanco">
+              <PropertyRef Name="UsuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="EstoqueBalanco">
+          <End Type="LanchoneteEntity.Estoque" Role="Estoque" Multiplicity="1" />
+          <End Type="LanchoneteEntity.Balanco" Role="Balanco" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estoque">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Balanco">
+              <PropertyRef Name="EstoqueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ProdutosFidelidade">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DescricaoProduto" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="QtdePontos" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="FidelidadeCliente" Relationship="LanchoneteEntity.ProdutosFidelidadeFidelidadeCliente" FromRole="ProdutosFidelidade" ToRole="FidelidadeCliente" />
+        </EntityType>
+        <EntityType Name="FidelidadeCliente">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Cliente" Relationship="LanchoneteEntity.ClienteFidelidadeCliente" FromRole="FidelidadeCliente" ToRole="Cliente" />
+          <Property Name="ClienteId" Type="Int32" Nullable="false" />
+          <Property Name="Quantidade" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ProdutosFidelidade" Relationship="LanchoneteEntity.ProdutosFidelidadeFidelidadeCliente" FromRole="FidelidadeCliente" ToRole="ProdutosFidelidade" />
+          <Property Name="ProdutosFidelidadeId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="ClienteFidelidadeCliente">
+          <End Type="LanchoneteEntity.Cliente" Role="Cliente" Multiplicity="1" />
+          <End Type="LanchoneteEntity.FidelidadeCliente" Role="FidelidadeCliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FidelidadeCliente">
+              <PropertyRef Name="ClienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProdutosFidelidadeFidelidadeCliente">
+          <End Type="LanchoneteEntity.ProdutosFidelidade" Role="ProdutosFidelidade" Multiplicity="1" />
+          <End Type="LanchoneteEntity.FidelidadeCliente" Role="FidelidadeCliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProdutosFidelidade">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FidelidadeCliente">
+              <PropertyRef Name="ProdutosFidelidadeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PagamentoVenda">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descricao" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="VendaId" Type="Int32" Nullable="false" />
+          <Property Name="FormaPagamentoId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="FormaPagamentos" Relationship="LanchoneteEntity.FK_PagamentoVenda_FormaPagamentos" FromRole="PagamentoVenda" ToRole="FormaPagamento" />
+          <NavigationProperty Name="Venda" Relationship="LanchoneteEntity.FK_PagamentoVenda_Venda" FromRole="PagamentoVenda" ToRole="Venda" />
+        </EntityType>
+        <Association Name="FK_PagamentoVenda_FormaPagamentos">
+          <End Type="LanchoneteEntity.FormaPagamento" Role="FormaPagamento" Multiplicity="1" />
+          <End Type="LanchoneteEntity.PagamentoVenda" Role="PagamentoVenda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormaPagamento">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PagamentoVenda">
+              <PropertyRef Name="FormaPagamentoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PagamentoVenda_Venda">
+          <End Type="LanchoneteEntity.Venda" Role="Venda" Multiplicity="1" />
+          <End Type="LanchoneteEntity.PagamentoVenda" Role="PagamentoVenda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Venda">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PagamentoVenda">
+              <PropertyRef Name="VendaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Motoqueiros">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Telefone" Type="Int32" Nullable="false" />
+          <Property Name="ValorTotalRecebido" Type="Double" Nullable="false" />
+          <Property Name="ValorEntrega" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Venda" Relationship="LanchoneteEntity.FK_MotoqueiroVenda" FromRole="Motoqueiros" ToRole="Venda" />
+        </EntityType>
+        <EntityType Name="Saidas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descricao" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Valor" Type="Double" Nullable="false" />
+          <Property Name="Datasaida" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Table_1">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Descricao" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Venda" Relationship="LanchoneteEntity.FK_Table_1_Venda" FromRole="Table_1" ToRole="Venda" />
+        </EntityType>
+        <Association Name="FK_MotoqueiroVenda">
+          <End Type="LanchoneteEntity.Motoqueiros" Role="Motoqueiros" Multiplicity="0..1" />
+          <End Type="LanchoneteEntity.Venda" Role="Venda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Motoqueiros">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Venda">
+              <PropertyRef Name="MotoqueiroId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_1_Venda">
+          <End Type="LanchoneteEntity.Venda" Role="Venda" Multiplicity="1" />
+          <End Type="LanchoneteEntity.Table_1" Role="Table_1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Venda">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Table_1">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="LanchoneteEntityStoreContainer" CdmEntityContainer="LanchoneteEntityContainer">
+    <EntitySetMapping Name="Usuarios">
+      <EntityTypeMapping TypeName="IsTypeOf(LanchoneteEntity.Usuario)">
+        <MappingFragment StoreEntitySet="Usuarios">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Senha" ColumnName="Senha" />
+          <ScalarProperty Name="NivelAcesso" ColumnName="NivelAcesso" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Venda">
+      <EntityTypeMapping TypeName="IsTypeOf(LanchoneteEntity.Venda)">
+        <MappingFragment StoreEntitySet="Venda">
+          <ScalarProperty Name="MotoqueiroId" ColumnName="MotoqueiroId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="DataVenda" ColumnName="DataVenda" />
+          <ScalarProperty Name="Situacao" ColumnName="Situacao" />
+          <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
+          <ScalarProperty Name="FormaPagamentoId" ColumnName="FormaPagamentoId" />
+          <ScalarProperty Name="ObservacaoVenda" ColumnName="ObservacaoVenda" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="OperadorCaixaId" ColumnName="OperadorCaixaId" />
+          <ScalarProperty Name="DataComparadora" ColumnName="DataComparadora" />
+          <ScalarProperty Name="TaxaEntregaVenda" ColumnName="TaxaEntregaVenda" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Produtos">
+      <EntityTypeMapping TypeName="IsTypeOf(LanchoneteEntity.Produto)">
+        <MappingFragment StoreEntitySet="Produtos">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="NomeProduto" ColumnName="NomeProduto" />
+          <ScalarProperty Name="PrecoUnitario" ColumnName="PrecoUnitario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProdutoVendas">
+      <EntityTypeMapping TypeName="IsTypeOf(LanchoneteEntity.ProdutoVenda)">
+        <MappingFragment StoreEntitySet="ProdutoVendas">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Quantidade" ColumnName="Quantidade" />
+          <ScalarProperty Name="PrecoVenda" ColumnName="PrecoVenda" />
+          <ScalarProperty Name="VendaId" ColumnName="VendaId" />
+          <ScalarProperty Name="ProdutoId" ColumnName="ProdutoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FormaPagamentos">
+      <EntityTypeMapping TypeName="IsTypeOf(LanchoneteEntity.FormaPagamento)">
+        <MappingFragment StoreEntitySet="FormaPagamentos">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Clientes">
+      <EntityTypeMapping TypeName="IsTypeOf(LanchoneteEntity.Cliente)">
+        <MappingFragment StoreEntitySet="Clientes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="NomeCliente" ColumnName="NomeCliente" />
+          <ScalarProperty Name="CPF" ColumnName="CPF" />
+          <ScalarProperty Name="Telefone" ColumnName="Telefone" />
+          <ScalarProperty Name="Endereco" ColumnName="Endereco" />
+          <ScalarProperty Name="Numero" ColumnName="Numero" />
+          <ScalarProperty Name="Bairro" ColumnName="Bairro" />
+          <ScalarProperty Name="Municipio" ColumnName="Municipio" />
+          <ScalarProperty Name="CEP" ColumnName="CEP" />
+          <ScalarProperty Name="Observacao" ColumnName="Observacao" />
+          <ScalarProperty Name="TaxaEntrega" ColumnName="TaxaEntrega" />
+          <ScalarProperty Name="PontosFidelidade" ColumnName="PontosFidelidade" />
+          <ScalarProperty Name="ContadorVendas" ColumnName="ContadorVendas" />
+          <ScalarProperty Name="Complemento" ColumnName="Complemento" />
+          <ScalarProperty Name="TotalGasto" ColumnName="TotalGasto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OperadorCaixas">
+      <EntityTypeMapping TypeName="IsTypeOf(LanchoneteEntity.OperadorCaixa)">
+        <MappingFragment StoreEntitySet="OperadorCaixas">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Venda" ColumnName="Venda" />
+          <ScalarProperty Name="DataCaixa" ColumnName="DataCaixa" />
+          <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
+          <ScalarProperty Name="Devolucao" ColumnName="Devolucao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Estoques">
+      <EntityTypeMapping TypeName="IsTypeOf(LanchoneteEntity.Estoque)">
+        <MappingFragment StoreEntitySet="Estoques">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Quantidade" ColumnName="Quantidade" />
+          <ScalarProperty Name="Medida" ColumnName="Medida" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Balancos">
+      <EntityTypeMapping TypeName="IsTypeOf(LanchoneteEntity.Balanco)">
+        <MappingFragment StoreEntitySet="Balancos">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="QuantidadeAntiga" ColumnName="QuantidadeAntiga" />
+          <ScalarProperty Name="QuantidadeNova" ColumnName="QuantidadeNova" />
+          <ScalarProperty Name="Data" ColumnName="Data" />
+          <ScalarProperty Name="Hora" ColumnName="Hora" />
+          <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
+          <ScalarProperty Name="EstoqueId" ColumnName="EstoqueId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProdutosFidelidades">
+      <EntityTypeMapping TypeName="IsTypeOf(LanchoneteEntity.ProdutosFidelidade)">
+        <MappingFragment StoreEntitySet="ProdutosFidelidades">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DescricaoProduto" ColumnName="DescricaoProduto" />
+          <ScalarProperty Name="QtdePontos" ColumnName="QtdePontos" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FidelidadeClienteSet">
+      <EntityTypeMapping TypeName="IsTypeOf(LanchoneteEntity.FidelidadeCliente)">
+        <MappingFragment StoreEntitySet="FidelidadeClienteSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
+          <ScalarProperty Name="Quantidade" ColumnName="Quantidade" />
+          <ScalarProperty Name="ProdutosFidelidadeId" ColumnName="ProdutosFidelidadeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PagamentoVenda">
+      <EntityTypeMapping TypeName="IsTypeOf(LanchoneteEntity.PagamentoVenda)">
+        <MappingFragment StoreEntitySet="PagamentoVenda">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+          <ScalarProperty Name="VendaId" ColumnName="VendaId" />
+          <ScalarProperty Name="FormaPagamentoId" ColumnName="FormaPagamentoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+          <EntitySetMapping Name="Motoqueiros">
+            <EntityTypeMapping TypeName="LanchoneteEntity.Motoqueiros">
+              <MappingFragment StoreEntitySet="Motoqueiros">
+                <ScalarProperty Name="ValorEntrega" ColumnName="ValorEntrega" />
+                <ScalarProperty Name="ValorTotalRecebido" ColumnName="ValorTotalRecebido" />
+                <ScalarProperty Name="Telefone" ColumnName="Telefone" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Saidas">
+            <EntityTypeMapping TypeName="LanchoneteEntity.Saidas">
+              <MappingFragment StoreEntitySet="Saidas">
+                <ScalarProperty Name="Datasaida" ColumnName="Datasaida" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_1">
+            <EntityTypeMapping TypeName="LanchoneteEntity.Table_1">
+              <MappingFragment StoreEntitySet="Table_1">
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

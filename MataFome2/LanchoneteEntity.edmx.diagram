@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="88d89c3c38f843a5a520fb1cc143b838" Name="Diagram1" ZoomLevel="88" >
+        <EntityTypeShape EntityType="LanchoneteEntity.Usuario" Width="1.5" PointX="5.5" PointY="0.5" />
+        <EntityTypeShape EntityType="LanchoneteEntity.Venda" Width="1.5" PointX="7.75" PointY="0.5" />
+        <EntityTypeShape EntityType="LanchoneteEntity.Produto" Width="1.5" PointX="12.25" PointY="0.5" />
+        <EntityTypeShape EntityType="LanchoneteEntity.ProdutoVenda" Width="1.5" PointX="10" PointY="0.5" />
+        <EntityTypeShape EntityType="LanchoneteEntity.FormaPagamento" Width="1.5" PointX="14.375" PointY="3.5" />
+        <EntityTypeShape EntityType="LanchoneteEntity.Cliente" Width="1.5" PointX="8" PointY="4.875" />
+        <EntityTypeShape EntityType="LanchoneteEntity.OperadorCaixa" Width="1.5" PointX="5.625" PointY="3.625" />
+        <AssociationConnector Association="LanchoneteEntity.ProdutoProdutoVenda" />
+        <AssociationConnector Association="LanchoneteEntity.VendaProdutoVenda" />
+        <AssociationConnector Association="LanchoneteEntity.ClienteVenda" />
+        <AssociationConnector Association="LanchoneteEntity.OperadorCaixaVenda" />
+        <AssociationConnector Association="LanchoneteEntity.UsuarioOperadorCaixa" />
+        <EntityTypeShape EntityType="LanchoneteEntity.Estoque" Width="1.5" PointX="1.875" PointY="4.375" />
+        <EntityTypeShape EntityType="LanchoneteEntity.Balanco" Width="1.5" PointX="1.875" PointY="0.625" />
+        <AssociationConnector Association="LanchoneteEntity.UsuarioBalanco" />
+        <AssociationConnector Association="LanchoneteEntity.EstoqueBalanco" />
+        <EntityTypeShape EntityType="LanchoneteEntity.ProdutosFidelidade" Width="1.5" PointX="14.375" PointY="5.5" />
+        <EntityTypeShape EntityType="LanchoneteEntity.FidelidadeCliente" Width="1.5" PointX="11.125" PointY="5.625" />
+        <AssociationConnector Association="LanchoneteEntity.ClienteFidelidadeCliente" />
+        <AssociationConnector Association="LanchoneteEntity.ProdutosFidelidadeFidelidadeCliente" />
+        <EntityTypeShape EntityType="LanchoneteEntity.PagamentoVenda" Width="1.5" PointX="11.25" PointY="3.125" />
+        <AssociationConnector Association="LanchoneteEntity.FK_PagamentoVenda_FormaPagamentos" />
+        <AssociationConnector Association="LanchoneteEntity.FK_PagamentoVenda_Venda" />
+        <EntityTypeShape EntityType="LanchoneteEntity.Motoqueiros" Width="1.5" PointX="5.875" PointY="7.625" />
+        <EntityTypeShape EntityType="LanchoneteEntity.Saidas" Width="1.5" PointX="2.625" PointY="7.375" />
+        <EntityTypeShape EntityType="LanchoneteEntity.Table_1" Width="1.5" PointX="10.375" PointY="10" />
+        <AssociationConnector Association="LanchoneteEntity.FK_MotoqueiroVenda" />
+        <AssociationConnector Association="LanchoneteEntity.FK_Table_1_Venda" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

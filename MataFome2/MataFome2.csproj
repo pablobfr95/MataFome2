@@ -1,0 +1,611 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8A54EA41-0902-4F63-8BD5-F2A7B4300F71}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>MataFome2</RootNamespace>
+    <AssemblyName>MataFome2</AssemblyName>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework.Design, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework.Fonts, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Fonts.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp, Version=1.50.5147.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.1.50.5147\lib\net20\PdfSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.Charting, Version=1.50.5147.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.1.50.5147\lib\net20\PdfSharp.Charting.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Balanco.cs">
+      <DependentUpon>LanchoneteEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Cache\Formapagamentocache.cs" />
+    <Compile Include="Cache\OperadorCache.cs" />
+    <Compile Include="Cache\UsuarioCache.cs" />
+    <Compile Include="Cache\VendaCache.cs" />
+    <Compile Include="Cliente.cs">
+      <DependentUpon>LanchoneteEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controller\ClienteController.cs" />
+    <Compile Include="Controller\UsuarioController.cs" />
+    <Compile Include="Estoque.cs">
+      <DependentUpon>LanchoneteEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FidelidadeCliente.cs">
+      <DependentUpon>LanchoneteEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MataFomeDataSet2.cs">
+      <DependentUpon>MataFomeDataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="MataFomeDataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MataFomeDataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="MataFomeDataSet3Atualizado.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MataFomeDataSet3Atualizado.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="MataFomeDataSet4.cs">
+      <DependentUpon>MataFomeDataSet4.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="MataFomeDataSet4.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MataFomeDataSet4.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="MataFomeDataSet5att.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MataFomeDataSet5att.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="MataFomeDataSet6Att.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MataFomeDataSet6Att.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="MataFomeDataSet7att.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MataFomeDataSet7att.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Motoqueiros.cs">
+      <DependentUpon>LanchoneteEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PagamentoVenda.cs">
+      <DependentUpon>LanchoneteEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProdutosFidelidade.cs">
+      <DependentUpon>LanchoneteEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Saidas.cs">
+      <DependentUpon>LanchoneteEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="Table_1.cs">
+      <DependentUpon>LanchoneteEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TelaCadastroMotoqueiro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TelaCadastroMotoqueiro.Designer.cs">
+      <DependentUpon>TelaCadastroMotoqueiro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TelaCadEstoque.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TelaCadEstoque.Designer.cs">
+      <DependentUpon>TelaCadEstoque.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TelaCadUsu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TelaCadUsu.Designer.cs">
+      <DependentUpon>TelaCadUsu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormaPagamento.cs">
+      <DependentUpon>LanchoneteEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FormVenda.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormVenda.Designer.cs">
+      <DependentUpon>FormVenda.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LanchoneteEntity.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LanchoneteEntity.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LanchoneteEntity.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LanchoneteEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LanchoneteEntity.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LanchoneteEntity.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="MataFomeDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MataFomeDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="MataFomeDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MataFomeDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="OperadorCaixa.cs">
+      <DependentUpon>LanchoneteEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Produto.cs">
+      <DependentUpon>LanchoneteEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProdutoVenda.cs">
+      <DependentUpon>LanchoneteEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TelaCadastroFormaPagamento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TelaCadastroFormaPagamento.Designer.cs">
+      <DependentUpon>TelaCadastroFormaPagamento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TelaCadastroProduto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TelaCadastroProduto.Designer.cs">
+      <DependentUpon>TelaCadastroProduto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TelaCadastroCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TelaCadastroCliente.Designer.cs">
+      <DependentUpon>TelaCadastroCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TelaClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TelaClientes.Designer.cs">
+      <DependentUpon>TelaClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TelaDevolução.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TelaDevolução.Designer.cs">
+      <DependentUpon>TelaDevolução.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TelaEntradaeSaida.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TelaEntradaeSaida.Designer.cs">
+      <DependentUpon>TelaEntradaeSaida.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TelaFinanças.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TelaFinanças.Designer.cs">
+      <DependentUpon>TelaFinanças.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TelaLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TelaLogin.Designer.cs">
+      <DependentUpon>TelaLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TelaMotoqueiro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TelaMotoqueiro.Designer.cs">
+      <DependentUpon>TelaMotoqueiro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TelaMotoqueiroVenda.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TelaMotoqueiroVenda.Designer.cs">
+      <DependentUpon>TelaMotoqueiroVenda.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TelaOperadorCaixa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TelaOperadorCaixa.Designer.cs">
+      <DependentUpon>TelaOperadorCaixa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TelaPedidos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TelaPedidos.Designer.cs">
+      <DependentUpon>TelaPedidos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TelaPontosFidelidade.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TelaPontosFidelidade.Designer.cs">
+      <DependentUpon>TelaPontosFidelidade.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TelaRelatoriodias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TelaRelatoriodias.Designer.cs">
+      <DependentUpon>TelaRelatoriodias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TelaRelatoriodoCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TelaRelatoriodoCliente.Designer.cs">
+      <DependentUpon>TelaRelatoriodoCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TelaRelatorioMotoqueiros.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TelaRelatorioMotoqueiros.Designer.cs">
+      <DependentUpon>TelaRelatorioMotoqueiros.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TelaRelatorioSaida.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TelaRelatorioSaida.Designer.cs">
+      <DependentUpon>TelaRelatorioSaida.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TelaSaida.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TelaSaida.Designer.cs">
+      <DependentUpon>TelaSaida.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TelaTrocarPontos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TelaTrocarPontos.Designer.cs">
+      <DependentUpon>TelaTrocarPontos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Usuario.cs">
+      <DependentUpon>LanchoneteEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Venda.cs">
+      <DependentUpon>LanchoneteEntity.tt</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormVenda.resx">
+      <DependentUpon>FormVenda.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Relatorios\Report1.rdlc" />
+    <EmbeddedResource Include="Relatorios\Report2.rdlc" />
+    <EmbeddedResource Include="Relatorios\Report3.rdlc" />
+    <EmbeddedResource Include="Relatorios\Report4.rdlc" />
+    <EmbeddedResource Include="TelaCadastroFormaPagamento.resx">
+      <DependentUpon>TelaCadastroFormaPagamento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TelaCadastroMotoqueiro.resx">
+      <DependentUpon>TelaCadastroMotoqueiro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TelaCadastroProduto.resx">
+      <DependentUpon>TelaCadastroProduto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TelaCadastroCliente.resx">
+      <DependentUpon>TelaCadastroCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TelaCadEstoque.resx">
+      <DependentUpon>TelaCadEstoque.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TelaCadUsu.resx">
+      <DependentUpon>TelaCadUsu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TelaClientes.resx">
+      <DependentUpon>TelaClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TelaDevolução.resx">
+      <DependentUpon>TelaDevolução.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TelaEntradaeSaida.resx">
+      <DependentUpon>TelaEntradaeSaida.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TelaFinanças.resx">
+      <DependentUpon>TelaFinanças.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TelaLogin.resx">
+      <DependentUpon>TelaLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TelaMotoqueiro.resx">
+      <DependentUpon>TelaMotoqueiro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TelaMotoqueiroVenda.resx">
+      <DependentUpon>TelaMotoqueiroVenda.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TelaOperadorCaixa.resx">
+      <DependentUpon>TelaOperadorCaixa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TelaPedidos.resx">
+      <DependentUpon>TelaPedidos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TelaPontosFidelidade.resx">
+      <DependentUpon>TelaPontosFidelidade.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TelaRelatoriodias.resx">
+      <DependentUpon>TelaRelatoriodias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TelaRelatoriodoCliente.resx">
+      <DependentUpon>TelaRelatoriodoCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TelaRelatorioMotoqueiros.resx">
+      <DependentUpon>TelaRelatorioMotoqueiros.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TelaRelatorioSaida.resx">
+      <DependentUpon>TelaRelatorioSaida.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TelaSaida.resx">
+      <DependentUpon>TelaSaida.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TelaTrocarPontos.resx">
+      <DependentUpon>TelaTrocarPontos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EntityDeploy Include="LanchoneteEntity.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>LanchoneteEntity.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="LanchoneteEntity.edmx.diagram">
+      <DependentUpon>LanchoneteEntity.edmx</DependentUpon>
+    </None>
+    <None Include="MataFomeDataSet.xsc">
+      <DependentUpon>MataFomeDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="MataFomeDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MataFomeDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="MataFomeDataSet.xss">
+      <DependentUpon>MataFomeDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="MataFomeDataSet1.xsc">
+      <DependentUpon>MataFomeDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="MataFomeDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MataFomeDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="MataFomeDataSet1.xss">
+      <DependentUpon>MataFomeDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="MataFomeDataSet2.xsc">
+      <DependentUpon>MataFomeDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="MataFomeDataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MataFomeDataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="MataFomeDataSet2.xss">
+      <DependentUpon>MataFomeDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="MataFomeDataSet3Atualizado.xsc">
+      <DependentUpon>MataFomeDataSet3Atualizado.xsd</DependentUpon>
+    </None>
+    <None Include="MataFomeDataSet3Atualizado.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MataFomeDataSet3Atualizado.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="MataFomeDataSet3Atualizado.xss">
+      <DependentUpon>MataFomeDataSet3Atualizado.xsd</DependentUpon>
+    </None>
+    <None Include="MataFomeDataSet4.xsc">
+      <DependentUpon>MataFomeDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="MataFomeDataSet4.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MataFomeDataSet4.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="MataFomeDataSet4.xss">
+      <DependentUpon>MataFomeDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="MataFomeDataSet5att.xsc">
+      <DependentUpon>MataFomeDataSet5att.xsd</DependentUpon>
+    </None>
+    <None Include="MataFomeDataSet5att.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MataFomeDataSet5att.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="MataFomeDataSet5att.xss">
+      <DependentUpon>MataFomeDataSet5att.xsd</DependentUpon>
+    </None>
+    <None Include="MataFomeDataSet6Att.xsc">
+      <DependentUpon>MataFomeDataSet6Att.xsd</DependentUpon>
+    </None>
+    <None Include="MataFomeDataSet6Att.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MataFomeDataSet6Att.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="MataFomeDataSet6Att.xss">
+      <DependentUpon>MataFomeDataSet6Att.xsd</DependentUpon>
+    </None>
+    <None Include="MataFomeDataSet7att.xsc">
+      <DependentUpon>MataFomeDataSet7att.xsd</DependentUpon>
+    </None>
+    <None Include="MataFomeDataSet7att.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MataFomeDataSet7att.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="MataFomeDataSet7att.xss">
+      <DependentUpon>MataFomeDataSet7att.xsd</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mata fome petisco.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="LanchoneteEntity.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>LanchoneteEntity.Context.cs</LastGenOutput>
+      <DependentUpon>LanchoneteEntity.edmx</DependentUpon>
+    </Content>
+    <Content Include="LanchoneteEntity.edmx.sql" />
+    <Content Include="LanchoneteEntity.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>LanchoneteEntity.cs</LastGenOutput>
+      <DependentUpon>LanchoneteEntity.edmx</DependentUpon>
+    </Content>
+    <None Include="Resources\businessapplication_distributor_report_document_negocio_2319.png" />
+    <None Include="Resources\icons8-devolver-compra-64.png" />
+    <None Include="Resources\business_packages_boxes_products_sellingproducts_thereport_2344.png" />
+    <None Include="Resources\icons8-caixa-480.png" />
+    <None Include="Resources\estoque-icon-png-4.png" />
+    <None Include="Resources\cartaoPresente.jpg" />
+    <None Include="Resources\Gift-1.png" />
+    <None Include="Resources\users_clients_group_16774.png" />
+    <None Include="Resources\vector-heavy-bike-icon.jpg" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\custom-reports256_24920.png" />
+    <None Include="Resources\cashier_icon-icons.com_53629.png" />
+    <None Include="Resources\shoppingcart_below_compra_12831.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
